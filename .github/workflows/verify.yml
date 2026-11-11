@@ -1,0 +1,24 @@
+name: Lean verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan (toolchain pinned by lean-toolchain = leanprover/lean4:v4.30.0-rc1)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: One-command verification (build, source scan, strict axiom audit)
+        run: bash scripts/verify.sh
+      - name: Upload axiom report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axioms
+          path: axioms.txt

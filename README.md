@@ -1,4 +1,4 @@
-# ns-torus-classical-uniqueness
+# periodic-navier-stokes-smooth-uniqueness
 
 Lean 4 / Mathlib proof, kernel-checked, of the **uniqueness of classical (C^∞) ℤ³-periodic
 solutions of the incompressible Navier–Stokes equations** with the same initial velocity, by the
@@ -33,14 +33,45 @@ in `BenFrohman/frohmanian-tether-sdiff` (`FrohmanianTether/ClayStatements.lean`)
 * **M2, uniqueness** (`Uniqueness.lean`): Grönwall via Mathlib
   `le_gronwallBound_of_liminf_deriv_right_le`.
 
-## Verify
+## Verify (one command)
 
 ```
+git clone https://github.com/BenFrohman/periodic-navier-stokes-smooth-uniqueness
+cd periodic-navier-stokes-smooth-uniqueness
 bash scripts/verify.sh
 ```
 
-Toolchain `leanprover/lean4:v4.30.0-rc1`, Mathlib `0c154d67103f74be3a0f2c509f72ccbf5be9f2a7`
-(same pins as `frohmanian-tether-sdiff`).
+`scripts/verify.sh` fetches the prebuilt Mathlib cache, runs `lake build`, scans the sources for
+`sorry`/`admit`/`native_decide`/`axiom`, and runs `AxiomAudit.lean` (a `#print axioms` for the 22
+headline theorems plus a strict audit of every declaration in the `NSTorus` namespace). It needs
+`elan` on the `PATH`; CI (`.github/workflows/verify.yml`) runs the same script.
+
+Pins:
+
+* Lean toolchain: `leanprover/lean4:v4.30.0-rc1` (`lean-toolchain`)
+* Mathlib: `0c154d67103f74be3a0f2c509f72ccbf5be9f2a7` (`lake-manifest.json`, input rev `v4.30.0-rc1`)
+
+These are the same pins as `BenFrohman/frohmanian-tether-sdiff`.
+
+Axiom output (end of `scripts/verify.sh`, from a clean build):
+
+```
+Build completed successfully (8274 jobs).
+OK: no sorry/admit/native_decide/axiom declarations
+'NSTorus.IsPeriodicSmoothSolutionOn.eq_of_same_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+...
+AUDIT PASS: 168 NSTorus declarations; only propext, Classical.choice, Quot.sound
+AXIOM AUDIT PASS: 22 theorems, only propext, Classical.choice, Quot.sound
+VERIFY OK
+```
+
+## Bridge to frohmanian-tether-sdiff
+
+`bridge/SdiffBridge.lean` is not part of the default build, because this project depends on
+Mathlib alone. It checks by `rfl`, against the compiled sdiff definitions, that `convective`,
+`laplacian`, `div`, `pressureGradient`, `latticeVec`, `unitCube`, `IsZ3Periodic` and
+`IsPeriodicSmoothSolutionOn` are the sdiff definitions. It also proves
+`sdiff_periodic_smooth_solution_unique` for the sdiff predicate.
 
 ## Provenance
 
