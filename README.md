@@ -1,5 +1,9 @@
 # periodic-navier-stokes-smooth-uniqueness
 
+## Kernel certificate
+
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `8c69231`, `leanprover/lean4:v4.30.0-rc1`. `lake build` passes; the sorry/axiom scan finds 0 hits; **125 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 10 of 10 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/periodic-navier-stokes-smooth-uniqueness/actions/runs/43937860208)).
+
 Lean 4 / Mathlib proof, kernel-checked, of the **uniqueness of classical (C^∞) ℤ³-periodic
 solutions of the incompressible Navier–Stokes equations** with the same initial velocity, by the
 energy method and Grönwall's inequality. Uses only the standard axioms (`propext`, `Classical.choice`,
