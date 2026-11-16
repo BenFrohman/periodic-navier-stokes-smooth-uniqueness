@@ -1,7 +1,17 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 import NSTorusUniqueness
 
-/-! Axiom audit: every headline theorem must depend only on `propext`, `Classical.choice`,
-`Quot.sound`. -/
+/-!
+# AxiomAudit
+
+ Axiom audit: every headline theorem must depend only on `propext`, `Classical.choice`,
+`Quot.sound`.
+-/
 
 open NSTorus
 
