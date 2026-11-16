@@ -1,0 +1,11 @@
+✔ [8264/8274] Built NSTorusUniqueness.Defs (4.6s)
+✔ [8265/8274] Built NSTorusUniqueness.IteratedIntegral (5.0s)
+✔ [8266/8274] Built NSTorusUniqueness.Clamp (5.2s)
+✔ [8267/8274] Built NSTorusUniqueness.CellIntegral (4.8s)
+✔ [8268/8274] Built NSTorusUniqueness.CellLebesgue (3.9s)
+✔ [8269/8274] Built NSTorusUniqueness.FieldIdentities (5.1s)
+✔ [8270/8274] Built NSTorusUniqueness.Energy (6.9s)
+✔ [8271/8274] Built NSTorusUniqueness.Uniqueness (3.9s)
+✔ [8272/8274] Built NSTorusUniqueness.Main (4.2s)
+✔ [8273/8274] Built NSTorusUniqueness (2.0s)
+Build completed successfully (8274 jobs).
